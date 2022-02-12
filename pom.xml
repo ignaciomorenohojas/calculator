@@ -32,6 +32,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>io.corp</groupId>
+			<artifactId>calculator</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<!-- test -->
 		<dependency>
 			<groupId>org.mockito</groupId>
