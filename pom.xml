@@ -12,7 +12,7 @@
 
 	<groupId>com.sanitas</groupId>
 	<artifactId>calculator</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<name>calculator</name>
 	<description>This microservice exposes an API that, based on input parameters, performs arithmetic operations.</description>
 
