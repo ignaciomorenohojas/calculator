@@ -22,7 +22,7 @@ public class SubtractOperation implements OperationFactory {
 			Double totalNegativePart = arguments.subList(1, arguments.size()).stream().reduce((double) 0, Double::sum);
 			return arguments.get(0) - totalNegativePart;
 		} else {
-			throw new OperationException("Number of arguments not valid.");
+			throw new OperationException(ARGUMENT_QUANTITY_ERROR_TEXT);
 		}
 
 	}

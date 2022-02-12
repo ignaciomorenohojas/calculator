@@ -17,7 +17,7 @@ import com.sanitas.calculator.domain.exception.OperationException;
 
 @RestController
 @RequestMapping("/calculator")
-final class CalculatorController {
+public final class CalculatorController {
 
 	private final CalculatorUseCase calculator;
 
@@ -31,7 +31,7 @@ final class CalculatorController {
 	}
 
 	@GetMapping("/{operationType}")
-	public ResponseEntity<Double> calculator(
+	public ResponseEntity<Object> calculator(
 			@PathVariable final OperationType operationType,
 			@RequestParam final List<Double> arguments) throws OperationException  {
 		return ResponseEntity.ok(calculator.calculate(operationType.doOperation(), arguments));

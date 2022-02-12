@@ -21,7 +21,7 @@ public class AddOperation implements OperationFactory {
 		if (arguments != null && arguments.size() >= MIN_ARGUMENTS && arguments.size() <= MAX_ARGUMENTS) {
 			return arguments.stream().reduce((double) 0, Double::sum);
 		} else {
-			throw new OperationException("Number of arguments not valid.");
+			throw new OperationException(ARGUMENT_QUANTITY_ERROR_TEXT);
 		}
 	}
 }
