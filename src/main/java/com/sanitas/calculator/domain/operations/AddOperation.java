@@ -1,5 +1,6 @@
 package com.sanitas.calculator.domain.operations;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.sanitas.calculator.domain.exception.OperationException;
@@ -17,9 +18,9 @@ public class AddOperation implements OperationFactory {
 	}
 
 	@Override
-	public Double calculate(List<Double> arguments) throws OperationException {
+	public BigDecimal calculate(List<BigDecimal> arguments) throws OperationException {
 		if (arguments != null && arguments.size() >= MIN_ARGUMENTS && arguments.size() <= MAX_ARGUMENTS) {
-			return arguments.stream().reduce((double) 0, Double::sum);
+			return arguments.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
 		} else {
 			throw new OperationException(ARGUMENT_QUANTITY_ERROR_TEXT);
 		}

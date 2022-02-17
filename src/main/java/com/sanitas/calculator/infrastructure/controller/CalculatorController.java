@@ -1,5 +1,6 @@
 package com.sanitas.calculator.infrastructure.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -48,9 +49,9 @@ public final class CalculatorController {
 	@ApiResponse(responseCode = "500", description = "Operation has unknown errors.")
 	public ResponseEntity<Object> calculator(
 			@Parameter(required = true, description = "Operation to be executed.") @PathVariable final OperationType operationType,
-			@Parameter(required = true, description = "Argument list separated by commas.") @RequestParam final List<Double> arguments) throws OperationException {
+			@Parameter(required = true, description = "Argument list separated by commas.") @RequestParam final List<BigDecimal> arguments) throws OperationException {
 
-		Double result = calculator.calculate(operationType.doOperation(), arguments);
+		BigDecimal result = calculator.calculate(operationType.doOperation(), arguments);
 
 		tracerAPIService.trace(result);
 		return ResponseEntity.ok(result);

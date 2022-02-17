@@ -1,30 +1,32 @@
 package com.sanitas.calculator.infraestructure.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.sanitas.calculator.domain.enums.OperationType;
 import com.sanitas.calculator.domain.operations.OperationFactory;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CalculatorControllerTest {
+class CalculatorControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	public void getOperationTypes_OK() throws Exception {
+	void getOperationTypes_OK() throws Exception {
 		String response = mockMvc.perform(get("/calculator/operation-types"))
 				.andExpect(status().is(HttpStatus.OK.value()))
 				.andReturn().getResponse().getContentAsString();
@@ -32,16 +34,16 @@ public class CalculatorControllerTest {
 	}
 
 	@Test
-	public void getCalculatorController_addOK() throws Exception {
+	void getCalculatorController_addOK() throws Exception {
 		String response = mockMvc.perform(get("/calculator/ADD")
 						.param("arguments", "1,2"))
 				.andExpect(status().is(HttpStatus.OK.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(Double.valueOf(3), Double.valueOf(response));
+		assertEquals(BigDecimal.valueOf(3.0), BigDecimal.valueOf(Double.parseDouble(response)));
 	}
 
 	@Test
-	public void getCalculatorController_addKO_tooFewArguments() throws Exception {
+	void getCalculatorController_addKO_tooFewArguments() throws Exception {
 		String response = mockMvc.perform(get("/calculator/ADD")
 						.param("arguments", "1"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
@@ -50,7 +52,7 @@ public class CalculatorControllerTest {
 	}
 
 	@Test
-	public void getCalculatorController_addKO_tooMuchArguments() throws Exception {
+	void getCalculatorController_addKO_tooMuchArguments() throws Exception {
 		String response = mockMvc.perform(get("/calculator/ADD")
 						.param("arguments", "1,2,3"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
@@ -59,16 +61,16 @@ public class CalculatorControllerTest {
 	}
 
 	@Test
-	public void getCalculatorController_subtractOK() throws Exception {
+	void getCalculatorController_subtractOK() throws Exception {
 		String response = mockMvc.perform(get("/calculator/SUBTRACT")
 						.param("arguments", "1,2"))
 				.andExpect(status().is(HttpStatus.OK.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(Double.valueOf(-1), Double.valueOf(response));
+		assertEquals(BigDecimal.valueOf(-1.0), BigDecimal.valueOf(Double.parseDouble(response)));
 	}
 
 	@Test
-	public void getCalculatorController_subtractKO_tooFewArguments() throws Exception {
+	void getCalculatorController_subtractKO_tooFewArguments() throws Exception {
 		String response = mockMvc.perform(get("/calculator/SUBTRACT")
 						.param("arguments", "1"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
@@ -77,7 +79,7 @@ public class CalculatorControllerTest {
 	}
 
 	@Test
-	public void getCalculatorController_subtractKO_tooMuchArguments() throws Exception {
+	void getCalculatorController_subtractKO_tooMuchArguments() throws Exception {
 		String response = mockMvc.perform(get("/calculator/SUBTRACT")
 						.param("arguments", "1,2,3"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))

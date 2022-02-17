@@ -1,5 +1,6 @@
 package com.sanitas.calculator.application.service.usecase;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.sanitas.calculator.domain.exception.OperationException;
@@ -16,5 +17,5 @@ public interface CalculatorUseCase {
 	 * @param arguments Arguments to use with the operation.
 	 * @return result of the operation.
 	 */
-	Double calculate(OperationFactory operation, List<Double> arguments) throws OperationException;
+	BigDecimal calculate(OperationFactory operation, List<BigDecimal> arguments) throws OperationException;
 }

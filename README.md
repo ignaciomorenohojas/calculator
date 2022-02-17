@@ -1,6 +1,6 @@
 # Calculator
 
-Repositorio para la API Calculator que es una prueba técnica pata Sanitas.
+Repositorio para la API Calculator que es una prueba técnica para Sanitas.
 
 Implementación de un microservicio "calculadora", usando maven + spring-boot
 
@@ -36,9 +36,9 @@ Requisitos previos para la compilación:
 1. Tener instalado y configurado el repositorio central de MAVEN.
 1. Instalar la librería "trace" mediante la orden:
   
-    mvn install:install-file -Dfile=tracer-1.0.0.jar -DgroupId=io.corp -DartifactId=calculator -Dversion=1.0.0 -Dpackaging=jar -DgeneratedPom=true
+    mvn install:install-file -Dfile=tracer-1.0.0.jar -DgroupId=io.corp.calculator -DartifactId=tracer -Dversion=1.0.0 -Dpackaging=jar -DgeneratedPom=true
 
-1. Descargar el Repositorio clonándolo de gotHub: 
+1. Descargar el Repositorio clonándolo de gitHub: 
 
     git clone https://github.com/ignaciomorenohojas/calculator.git
 

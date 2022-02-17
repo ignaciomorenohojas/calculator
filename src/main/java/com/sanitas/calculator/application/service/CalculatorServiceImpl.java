@@ -1,5 +1,6 @@
 package com.sanitas.calculator.application.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import com.sanitas.calculator.domain.operations.OperationFactory;
 public class CalculatorServiceImpl implements CalculatorUseCase {
 
 	@Override
-	public Double calculate(OperationFactory operation, List<Double> arguments) throws OperationException {
+	public BigDecimal calculate(OperationFactory operation, List<BigDecimal> arguments) throws OperationException {
 		return operation.calculate(arguments);
 	}
 }
