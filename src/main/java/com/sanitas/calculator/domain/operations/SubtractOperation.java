@@ -3,18 +3,24 @@ package com.sanitas.calculator.domain.operations;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.sanitas.calculator.domain.exception.OperationException;
 
 /**
  * @author imoreno
  * @since 2022-02-11
  */
-public class SubtractOperation implements OperationFactory {
+@Service
+public class SubtractOperation implements Operation {
+	private static final String OPERATION = "SUBTRACT";
+
 	private static final int MIN_ARGUMENTS = 2;
 	private static final int MAX_ARGUMENTS = 2;
 
-	public SubtractOperation() {
-		super();
+	@Override
+	public boolean isValid(String factoryContext) {
+		return OPERATION.equals(factoryContext);
 	}
 
 	@Override
@@ -27,5 +33,4 @@ public class SubtractOperation implements OperationFactory {
 		}
 
 	}
-
 }
