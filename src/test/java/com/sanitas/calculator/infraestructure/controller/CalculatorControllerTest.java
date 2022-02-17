@@ -15,8 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.sanitas.calculator.domain.enums.OperationType;
-import com.sanitas.calculator.domain.operations.OperationFactory;
+import com.sanitas.calculator.domain.operations.Operation;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -24,14 +23,6 @@ import com.sanitas.calculator.domain.operations.OperationFactory;
 class CalculatorControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
-
-	@Test
-	void getOperationTypes_OK() throws Exception {
-		String response = mockMvc.perform(get("/calculator/operation-types"))
-				.andExpect(status().is(HttpStatus.OK.value()))
-				.andReturn().getResponse().getContentAsString();
-		assertEquals(OperationType.values().length, response.split(",").length);
-	}
 
 	@Test
 	void getCalculatorController_addOK() throws Exception {
@@ -48,7 +39,7 @@ class CalculatorControllerTest {
 						.param("arguments", "1"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(OperationFactory.ARGUMENT_QUANTITY_ERROR_TEXT, response);
+		assertEquals(Operation.ARGUMENT_QUANTITY_ERROR_TEXT, response);
 	}
 
 	@Test
@@ -57,7 +48,7 @@ class CalculatorControllerTest {
 						.param("arguments", "1,2,3"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(OperationFactory.ARGUMENT_QUANTITY_ERROR_TEXT, response);
+		assertEquals(Operation.ARGUMENT_QUANTITY_ERROR_TEXT, response);
 	}
 
 	@Test
@@ -75,7 +66,7 @@ class CalculatorControllerTest {
 						.param("arguments", "1"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(OperationFactory.ARGUMENT_QUANTITY_ERROR_TEXT, response);
+		assertEquals(Operation.ARGUMENT_QUANTITY_ERROR_TEXT, response);
 	}
 
 	@Test
@@ -84,6 +75,6 @@ class CalculatorControllerTest {
 						.param("arguments", "1,2,3"))
 				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(OperationFactory.ARGUMENT_QUANTITY_ERROR_TEXT, response);
+		assertEquals(Operation.ARGUMENT_QUANTITY_ERROR_TEXT, response);
 	}
 }
